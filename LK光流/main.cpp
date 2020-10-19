@@ -23,8 +23,8 @@ int main()
     // 两帧图像
     Mat prevFrame;
     Mat nextFrame;
-    resize(imread("1.jpg", IMREAD_GRAYSCALE), prevFrame, Size(600, 600));
-    resize(imread("2.jpg", IMREAD_GRAYSCALE), nextFrame, Size(600, 600));
+    resize(imread("mouse1.jpg", IMREAD_GRAYSCALE), prevFrame, Size(600, 600));
+    resize(imread("mouse2.jpg", IMREAD_GRAYSCALE), nextFrame, Size(600, 600));
 
 
     vector<Point2f> featurePrev;
