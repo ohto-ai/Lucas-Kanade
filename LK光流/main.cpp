@@ -14,7 +14,14 @@ int main()
     Mat prevFrame;
     Mat nextFrame;
     capture.open(0);
-    capture >> frame;
+
+    capture.set(cv::CAP_PROP_FRAME_WIDTH, 4000);
+    capture.set(cv::CAP_PROP_FRAME_HEIGHT, 1880);
+    int width = capture.get(cv::CAP_PROP_FRAME_WIDTH);
+    int height = capture.get(cv::CAP_PROP_FRAME_HEIGHT);
+
+    std::cout << width << "," << height;
+
     vector<Point2f> featurePrev;
 
     int maxCoutFeature = 200;      // 最大特征点数量
@@ -24,13 +31,14 @@ int main()
     Mat featureStatus, featureError;
 
     int refreshCount = 100;
+    capture >> frame;
     while(1)
     {
         // 两帧图像
-        cvtColor(frame, prevFrame, COLOR_BGR2GRAY);
-        capture >> frame;
         if (frame.empty())
             break;
+        cvtColor(frame, prevFrame, COLOR_BGR2GRAY);
+        capture >> frame;
         cvtColor(frame, nextFrame, COLOR_BGR2GRAY);
         frame.copyTo(drawFrame);
         if (frame.empty())
